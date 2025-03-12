@@ -9,8 +9,6 @@
 *   @author Michael Heron
 *   @version 1.0
 *   
-*   Contributions to the code made by others:
-*   @author Aristotelis Anthopoulos (see Changelog for 1.3.0)  
 */
 
 using SDL2;
@@ -143,22 +141,20 @@ namespace Shard
 
             SDL.SDL_GetRenderDrawColor(_rend, out r, out g, out b, out a);
 
-            var points = new List<SDL.SDL_Point>();
-
             // We draw an octagon around the point, and then turn it a bit.  Do 
             // that until we have an outline circle.  If you want a filled one, 
             // do the same thing with an ever decreasing radius.
             while (x >= y)
             {
 
-                points.Add(new SDL.SDL_Point { x = centreX + x, y = centreY - y });
-                points.Add(new SDL.SDL_Point { x = centreX + x, y = centreY + y });
-                points.Add(new SDL.SDL_Point { x = centreX - x, y = centreY - y });
-                points.Add(new SDL.SDL_Point { x = centreX - x, y = centreY + y });
-                points.Add(new SDL.SDL_Point { x = centreX + y, y = centreY - x });
-                points.Add(new SDL.SDL_Point { x = centreX + y, y = centreY + x });
-                points.Add(new SDL.SDL_Point { x = centreX - y, y = centreY - x });
-                points.Add(new SDL.SDL_Point { x = centreX - y, y = centreY + x });
+                SDL.SDL_RenderDrawPoint(_rend, centreX + x, centreY - y);
+                SDL.SDL_RenderDrawPoint(_rend, centreX + x, centreY + y);
+                SDL.SDL_RenderDrawPoint(_rend, centreX - x, centreY - y);
+                SDL.SDL_RenderDrawPoint(_rend, centreX - x, centreY + y);
+                SDL.SDL_RenderDrawPoint(_rend, centreX + y, centreY - x);
+                SDL.SDL_RenderDrawPoint(_rend, centreX + y, centreY + x);
+                SDL.SDL_RenderDrawPoint(_rend, centreX - y, centreY - x);
+                SDL.SDL_RenderDrawPoint(_rend, centreX - y, centreY + x);
 
                 if (error <= 0)
                 {
@@ -173,8 +169,6 @@ namespace Shard
                     tx += 2;
                     error += (tx - dia);
                 }
-
-                SDL.SDL_RenderDrawPoints(_rend, points.ToArray(), points.Count);
 
             }
         }
