@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shard.StateMachine;
 
 namespace Shard.Animation
 {
-    class AnimationState
+    class AnimationState: State
     {
-        public string stateName { get; private set; }
         public Animation animationClip { get; private set; }
 
         public AnimationState(string name, Animation animation)

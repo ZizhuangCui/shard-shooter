@@ -4,15 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shard.Animation
+namespace Shard.StateMachine
 {
-    class AnimationStateTransition
+    class State
     {
-        public AnimationState FromState { get; private set; }
-        public AnimationState ToState { get; private set; }
+        public string stateName;
+    }
+
+    class StateTransition<T> where T : State
+    {
+        public T FromState { get; private set; }
+        public T ToState { get; private set; }
         public Func<bool> Condition { get; private set; }
 
-        public AnimationStateTransition(AnimationState fromState, AnimationState toState, Func<bool> condition)
+        public StateTransition(T fromState, T toState, Func<bool> condition)
         {
             FromState = fromState;
             ToState = toState;

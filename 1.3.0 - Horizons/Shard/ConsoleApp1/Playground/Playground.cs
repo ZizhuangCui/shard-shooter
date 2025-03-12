@@ -18,9 +18,6 @@ namespace Shard
         {
             Bootstrap.getDisplay().showText("FPS: " + Bootstrap.getSecondFPS() + " / " + Bootstrap.getFPS(), 10, 10, 20, 255, 255, 255);
             Bootstrap.getDisplay().addToDraw(background);
-
-            //test tree
-            //TestTree();
         }
 
         public override int getTargetFrameRate()
@@ -54,8 +51,6 @@ namespace Shard
 
         public void handleInput(InputEvent inp, string eventType)
         {
-            
-
             if (eventType == "MouseDown" && inp.Button == 3)
             {
                 Asteroid asteroid = new Asteroid();

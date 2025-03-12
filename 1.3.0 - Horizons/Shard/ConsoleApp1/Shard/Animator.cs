@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shard.StateMachine;
 
 namespace Shard.Animation
 {
     class Animator
     {
         private Dictionary<string, AnimationState> states;
-        private List<AnimationStateTransition> transitions;
+        private List<StateTransition<AnimationState>> transitions;
         private AnimationState currentState;
 
         public Animator()
         {
             states = new Dictionary<string, AnimationState>();
-            transitions = new List<AnimationStateTransition>();
+            transitions = new List<StateTransition<AnimationState>>();
         }
 
         public void AddState(string name, Animation animation)
@@ -30,7 +31,7 @@ namespace Shard.Animation
         }
         public void AddTransition(AnimationState fromState, AnimationState toState, Func<bool> condition)
         {
-            transitions.Add(new AnimationStateTransition(fromState, toState, condition));
+            transitions.Add(new StateTransition<AnimationState>(fromState, toState, condition));
         }
 
         public void SetInitialState(string stateName)
