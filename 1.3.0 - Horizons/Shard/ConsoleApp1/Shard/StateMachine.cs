@@ -24,4 +24,68 @@ namespace Shard.StateMachine
             Condition = condition;
         }
     }
+
+    class StateMachine<T> where T : State
+    {
+        protected Dictionary<string, T> states = new Dictionary<string, T>();
+        protected List<StateTransition<T>> transitions = new List<StateTransition<T>>();
+        protected T currentState;
+
+        public void AddState(string name, T state)
+        {
+            states[name] = state;
+        }
+
+        public T GetState(string name)
+        {
+            return states.ContainsKey(name) ? states[name] : null;
+        }
+
+        public void AddTransition(T fromState, T toState, Func<bool> condition)
+        {
+            transitions.Add(new StateTransition<T>(fromState, toState, condition));
+        }
+
+        public void SetInitialState(string stateName)
+        {
+            if (states.ContainsKey(stateName))
+            {
+                currentState = states[stateName];
+                OnStateEnter(currentState);
+            }
+            else
+            {
+                Console.WriteLine($"State {stateName} not found in StateMachine.");
+            }
+        }
+
+        public void Update()
+        {
+            foreach (var transition in transitions)
+            {
+                if (transition.FromState == currentState && transition.Condition())
+                {
+                    SetCurrentState(transition.ToState);
+                    break;
+                }
+            }
+
+            OnStateUpdate(currentState);
+        }
+
+        protected virtual void OnStateEnter(T state) { }
+        protected virtual void OnStateUpdate(T state) { }
+        protected virtual void OnStateExit(T state) { }
+
+        protected void SetCurrentState(T newState)
+        {
+            if (currentState != newState)
+            {
+                OnStateExit(currentState);
+                currentState = newState;
+                OnStateEnter(currentState);
+            }
+        }
+    }
+
 }

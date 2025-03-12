@@ -14,14 +14,14 @@ namespace Playground
 
         public override void initialize()
         {
-            animator =new Animator();
+            animator = new Animator();
 
-            animator.AddState("Idle", new Animation("Idle",2, 0.5, true));
-            animator.AddState("WalkingLeft", new Animation("left", 4, 0.1, true));
-            animator.AddState("WalkingRight", new Animation("right", 4, 0.1, true));
+            animator.AddState("Idle", new AnimationState("Idle", new Animation("Idle", 2, 0.5, true)));
+            animator.AddState("WalkingLeft", new AnimationState("WalkingLeft", new Animation("left", 4, 0.1, true)));
+            animator.AddState("WalkingRight", new AnimationState("WalkingRight", new Animation("right", 4, 0.1, true)));
 
-            animator.AddTransition(animator.GetState("Idle"), animator.GetState("WalkingLeft"), () => left && speed >0);
-            animator.AddTransition(animator.GetState("Idle"), animator.GetState("WalkingRight"), () => right && speed >0);
+            animator.AddTransition(animator.GetState("Idle"), animator.GetState("WalkingLeft"), () => left && speed > 0);
+            animator.AddTransition(animator.GetState("Idle"), animator.GetState("WalkingRight"), () => right && speed > 0);
             animator.AddTransition(animator.GetState("WalkingLeft"), animator.GetState("Idle"), () => speed == 0);
             animator.AddTransition(animator.GetState("WalkingRight"), animator.GetState("Idle"), () => speed == 0);
 
