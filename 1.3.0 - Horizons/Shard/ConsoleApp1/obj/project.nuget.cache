@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "N4q4AukfmwnH4f4KZ6tav1AUC5GsgXI+wQAWyFXsb5nm1wtYzhiReuIZ5XWfEYH3UC6n1r3eT/IYC1flV9W30w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\natashab\\Documents\\Course Material\\2024 - 2025\\Game Engine Architecture\\1.3.0 - Horizons\\Shard\\ConsoleApp1\\Shard.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\natashab\\.nuget\\packages\\sayers.sdl2.core\\1.0.11\\sayers.sdl2.core.1.0.11.nupkg.sha512",
+    "C:\\Users\\natashab\\.nuget\\packages\\sdl2-cs\\2.0.0\\sdl2-cs.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
