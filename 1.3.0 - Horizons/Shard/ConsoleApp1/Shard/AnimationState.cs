@@ -11,6 +11,9 @@ namespace Shard.Animation
     {
         public Animation animationClip { get; private set; }
 
+        public Action OnEnter { get; set; }
+        public Action OnExit { get; set; }
+
         public AnimationState(string name, Animation animation)
         {
             stateName = name;

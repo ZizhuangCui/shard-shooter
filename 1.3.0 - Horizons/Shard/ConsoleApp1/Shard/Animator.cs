@@ -12,6 +12,7 @@ namespace Shard.Animation
         protected override void OnStateEnter(AnimationState state)
         {
             state.animationClip.Play();
+            state.OnEnter?.Invoke();
         }
 
         protected override void OnStateUpdate(AnimationState state)
@@ -22,6 +23,7 @@ namespace Shard.Animation
         protected override void OnStateExit(AnimationState state)
         {
             state.animationClip.Stop();
+            state.OnExit?.Invoke();
         }
 
         public string GetCurrentSpritePath()

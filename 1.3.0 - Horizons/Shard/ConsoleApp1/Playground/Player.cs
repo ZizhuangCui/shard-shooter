@@ -17,8 +17,18 @@ namespace Playground
             animator = new Animator();
 
             animator.AddState("Idle", new AnimationState("Idle", new Animation("Idle", 2, 0.5, true)));
-            animator.AddState("WalkingLeft", new AnimationState("WalkingLeft", new Animation("left", 4, 0.1, true)));
-            animator.AddState("WalkingRight", new AnimationState("WalkingRight", new Animation("right", 4, 0.1, true)));
+
+            var walkingLeft = new AnimationState("WalkingLeft", new Animation("left", 4, 0.1, true))
+            {
+                OnEnter = () => Bootstrap.getSound().playSound("fire.wav")
+            };
+            animator.AddState("WalkingLeft", walkingLeft);
+
+            var walkingRight = new AnimationState("WalkingRight", new Animation("right", 4, 0.1, true))
+            {
+                OnExit= () => Bootstrap.getSound().playSound("fire.wav")
+            };
+            animator.AddState("WalkingRight", walkingRight);
 
             animator.AddTransition(animator.GetState("Idle"), animator.GetState("WalkingLeft"), () => left && speed > 0);
             animator.AddTransition(animator.GetState("Idle"), animator.GetState("WalkingRight"), () => right && speed > 0);
