@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Shard
+namespace Shard.UI
 {
-    class UIButton : GameObject, InputListener
+    class Button : GameObject, InputListener
     {
         private string defaultSprite;
         private string hoverSprite;
@@ -13,7 +13,7 @@ namespace Shard
 
         public Action onClick;
 
-        public UIButton(string DefaultSprite, Action OnClick, string HoverSprite = null, string PressedSprite = null)
+        public Button(string DefaultSprite, Action OnClick, string HoverSprite = null, string PressedSprite = null)
         {
             defaultSprite = Bootstrap.getAssetManager().getAssetPath(DefaultSprite);
             onClick = OnClick;
