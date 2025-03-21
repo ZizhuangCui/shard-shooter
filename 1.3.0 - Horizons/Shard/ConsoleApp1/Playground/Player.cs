@@ -81,6 +81,11 @@ namespace Playground
             }
         }
 
+        public void setWalkingSpeed(float newSpeed)
+        {
+            walkSpeed = newSpeed;
+        }
+
         public override void update()
         {
             float amount = (float)(speed * Bootstrap.getDeltaTime());

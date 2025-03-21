@@ -14,7 +14,7 @@ namespace Shard.UI
 
         private float minValue;
         private float maxValue;
-        private float currentValue;
+        public float currentValue { get; private set; }
 
         private bool isDragging = false;
 
