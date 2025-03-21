@@ -31,7 +31,7 @@ namespace Shard.UI
 
             minValue = MinValue;
             maxValue = MaxValue;
-            currentValue = MathUtils.Clamp(InitialValue, minValue, maxValue);
+            currentValue = Math.Clamp(InitialValue, minValue, maxValue);
 
             onValueChanged = OnValueChanged;
 
@@ -48,14 +48,12 @@ namespace Shard.UI
 
             Bootstrap.getDisplay().addToDraw(background);
 
-            int fillWidth = (int)((currentValue - minValue) / (maxValue - minValue) * background.Transform.Wid);
-            fill.Transform.Wid = fillWidth;
+            fill.Transform.Scalex = (currentValue - minValue) / (maxValue - minValue);
             fill.Transform.X = X;
             fill.Transform.Y = Y;
-
             Bootstrap.getDisplay().addToDraw(fill);
 
-            int handleX = MathUtils.Clamp(
+            int handleX = Math.Clamp(
                 (int)(X + (currentValue - minValue) / (maxValue - minValue) * (background.Transform.Wid - handle.Transform.Wid)),
                 X,
                 X + background.Transform.Wid - handle.Transform.Wid
@@ -83,7 +81,7 @@ namespace Shard.UI
 
             if (eventType == "MouseMotion" && isDragging)
             {
-                int newHandleX = MathUtils.Clamp(inp.X, X, X + background.Transform.Wid - handle.Transform.Wid);
+                int newHandleX = Math.Clamp(inp.X, X, X + background.Transform.Wid - handle.Transform.Wid);
                 float newValue = MathUtils.Lerp(minValue, maxValue, (float)(newHandleX - X) / (background.Transform.Wid - handle.Transform.Wid));
 
                 if (!MathUtils.Approximately(newValue, currentValue))
